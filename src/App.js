@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+
+
+import { GlobalStyles } from './styles/GlobalStyles';
+import { useThemeToggler } from './hooks/useThemeToggler';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { Layout } from './components/Layout';
 
 function App() {
+
+  const { theme, themeToggler } = useThemeToggler();
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Header themeToggler={themeToggler} />
+      <Layout />
+      <Footer />
+    </ThemeProvider>
+    </>
   );
 }
 
